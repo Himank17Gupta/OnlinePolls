@@ -39,6 +39,7 @@ export default class SignInCard extends React.Component {
   }
   handleSubmit(){
     console.log(this.LoginObj);
+    if(this.LoginObj.UserId==this.LoginObj.Password){this.props.history.push({pathname:"/user",state:{user:this.LoginObj.UserId}})}
     this.setState({loader:'true'});
     document.getElementById('errmsg').innerText='Incorrect UserId or ReferenceId..Try Again';
   }

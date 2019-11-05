@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import SignInCard from './components/Login';
 import SignUpCard from './components/SignUp';
 import Header from './components/header';
+import UserDashBoard from './components/userDashboard';
 
 
 var App=()=>{
@@ -14,6 +15,7 @@ var App=()=>{
   <Container  maxWidth="sm"> 
   <Route path="/" exact component={SignInCard} />
   <Route path="/SignUp" component={SignUpCard} />
+  <Route path="/user" component={UserDashBoard} />
   </Container>
   </BrowserRouter>
   )
