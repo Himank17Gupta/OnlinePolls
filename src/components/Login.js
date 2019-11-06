@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Container } from '@material-ui/core';
+import Header from './header';
 
 const useStyles = makeStyles({
   card: {
@@ -45,6 +47,9 @@ export default class SignInCard extends React.Component {
   }
 render(){
   return (
+    <>
+    <Header/>
+    <Container maxWidth='sm'>
     <div style={{textAlign: "center"}}>
       <p></p>
     <br/>
@@ -93,6 +98,8 @@ render(){
       </CardActions>
     </Card>
     </div>
+    </Container>
+    </>
   );
 }
 }

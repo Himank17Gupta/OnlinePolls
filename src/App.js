@@ -11,8 +11,8 @@ var App=()=>{
 
   return(
   <BrowserRouter>
-  <Header/>
-  <Container  maxWidth="sm"> 
+  {/* <Header/> */}
+  <Container  maxWidth="lg"> 
   <Route path="/" exact component={SignInCard} />
   <Route path="/SignUp" component={SignUpCard} />
   <Route path="/user" component={UserDashBoard} />
