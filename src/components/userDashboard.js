@@ -13,7 +13,7 @@ function UserDashBoard(props){
         <br/>
     <CreatePoll ></CreatePoll>
     <br/>
-    <PollList/>
+    <PollList  props={props}  />
     </div>
     </Container>
     );

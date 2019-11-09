@@ -5,15 +5,15 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { BrowserRouter,Route } from 'react-router-dom';
 
 
-
-export default function VoteCard(){
+export default function VoteCard(props){
 var vote={title:"XYZ",options:['a','b','c','d']};
-
+console.log(props);
 return (
     
-      <Card title={vote.title}>
+      <Card title={vote.title} onClick={()=>{console.log('votecard clicked',props.id);props.props.props.history.push({pathname:'/PollVote',state:{poll:props.id}})}} >
     <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

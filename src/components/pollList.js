@@ -4,6 +4,7 @@ import { Container, GridList, GridListTile } from '@material-ui/core';
 
 function PollList(props){
     var nums=['a','b','c','d','e'];
+    console.log(props);
     return(
     <div>
         
@@ -13,7 +14,7 @@ function PollList(props){
       {nums.map(n => {
         return (
           <GridListTile key={n} style={{height:'100%'}} >
-            <VoteCard/>
+            <VoteCard id={n} props={props} />
           </GridListTile>
         );
       })}

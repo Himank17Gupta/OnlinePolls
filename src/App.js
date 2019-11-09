@@ -5,6 +5,7 @@ import SignInCard from './components/Login';
 import SignUpCard from './components/SignUp';
 import Header from './components/header';
 import UserDashBoard from './components/userDashboard';
+import PollVote from './components/PollVote';
 
 //https://pollsmernrestapi.herokuapp.com
 var App=()=>{
@@ -16,6 +17,7 @@ var App=()=>{
   <Route path="/" exact component={SignInCard} />
   <Route path="/SignUp" component={SignUpCard} />
   <Route path="/user" component={UserDashBoard} />
+  <Route path="/PollVote" component={PollVote} />
   </Container>
   </BrowserRouter>
   )
