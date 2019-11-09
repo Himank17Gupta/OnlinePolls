@@ -6,6 +6,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle'
+import NewPoll from './NewPollForm';
 
 const useStyles = makeStyles({
   card: {
@@ -15,9 +21,19 @@ const useStyles = makeStyles({
 
 export default function CreatePoll() {
  // const classes = useStyles();
+ const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <Card className={useStyles.card} onClick={()=>console.log('clicked on create new poll')}>
+    <>
+    <Card className={useStyles.card} onClick={handleClickOpen.bind(this)}>
       <CardActionArea>
         
         <CardContent>
@@ -30,10 +46,25 @@ export default function CreatePoll() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleClickOpen.bind(this)}>
           Create
         </Button>
       </CardActions>
     </Card>
+    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title"  >
+        <DialogTitle id="form-dialog-title">Create New Poll</DialogTitle>
+        <DialogContent>
+         <NewPoll/>
+        </DialogContent>
+        {/* <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Subscribe
+          </Button>
+        </DialogActions> */}
+      </Dialog>
+  </>
   );
 }
