@@ -11,9 +11,11 @@ import { BrowserRouter,Route } from 'react-router-dom';
 export default function VoteCard(props){
 var vote={title:"XYZ",options:['a','b','c','d']};
 console.log(props);
+console.log(props.props.props.location.state);
+var user=props.props.props.location.state;
 return (
     
-      <Card title={vote.title} onClick={()=>{console.log('votecard clicked',props.id);props.props.props.history.push({pathname:'/PollVote',state:{poll:props.id}})}} >
+      <Card title={vote.title} onClick={()=>{console.log('votecard clicked',props.id);props.props.props.history.push({pathname:'/PollVote',state:{poll:props.id,user:user}})}} >
     <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

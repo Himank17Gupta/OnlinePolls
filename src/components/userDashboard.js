@@ -3,6 +3,7 @@ import CreatePoll from './createPoll';
 import PollList from './pollList';
 import { Container } from '@material-ui/core';
 import UserHeader from './userHeader';
+import { BrowserRouter,Route,Switch,Redirect } from 'react-router-dom';
 function UserDashBoard(props){
     console.log(props);
     var userid=props.location.state.user;
