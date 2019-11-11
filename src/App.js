@@ -6,6 +6,7 @@ import SignUpCard from './components/SignUp';
 import Header from './components/header';
 import UserDashBoard from './components/userDashboard';
 import PollVote from './components/PollVote';
+import ProgressBarPage from './components/dummyformdb';
 
 //https://pollsmernrestapi.herokuapp.com
 var App=()=>{
@@ -19,6 +20,7 @@ var App=()=>{
   <Route path="/user" component={UserDashBoard} />
   <Route path="/PollVote" component={PollVote} />
   </Container>
+  
   </BrowserRouter>
   )
 }
