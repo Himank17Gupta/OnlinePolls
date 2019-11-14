@@ -13,7 +13,7 @@ import {connect}  from 'react-redux';
 export default class App extends React.Component{
   constructor(props){
     super(props);
-console.log('app props are :',props);
+//console.log('app props are :',props);
   }
   render(){
   return(

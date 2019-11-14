@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container } from '@material-ui/core';
 import Header from './header';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   card: {
@@ -30,19 +31,33 @@ const useStyles = makeStyles({
 export default class SignUpCard extends React.Component {
   constructor(props){
     super(props);
-    this.LoginObj={};
+    this.SignUpObj={};
     this.state={'loader':false};
   }
 
   takeInput(event){
     var key=event.target.name;
     var value=event.target.value;
-    this.LoginObj[key]=value;
+    this.SignUpObj[key]=value;
   }
   handleSubmit(){
-    console.log(this.LoginObj);
+    console.log(this.SignUpObj);
     this.setState({loader:'true'});
-    document.getElementById('errmsg').innerText='Incorrect UserId or ReferenceId..Try Again';
+    axios.post("https://pollsmernrestapi.herokuapp.com/signup",this.SignUpObj).then(res=>{
+      this.setState({'loader':false});
+      console.log(res);
+  if(res.data==="Error during adding user"){
+  document.getElementById('errmsg2').innerText="Couldn't add user...Try Again with correct details" ;
+  }
+  else{
+    document.getElementById('errmsg2').innerText="User Added...Sign In to continue" ;
+  }
+    }).catch(err=>{
+      alert("something went wrong");
+      console.log(err)});
+    
+
+  //  document.getElementById('errmsg').innerText='Incorrect UserId or ReferenceId..Try Again';
   }
 render(){
   return (
@@ -64,7 +79,7 @@ render(){
         <TextField
           required
           id="standard-required"
-          name="Name"
+          name="userid"
           label="Name"
           placeholder="Enter Name here"
           className={useStyles.textField}
@@ -75,7 +90,7 @@ render(){
         <TextField
           required
           id="standard-required"
-          name="Email"
+          name="email"
           label="Email"
           placeholder="Enter Email Id here"
           className={useStyles.textField}
@@ -86,7 +101,7 @@ render(){
         <TextField
           required
           id="standard-required"
-          name="Contact No."
+          name="contact"
           label="Contact No."
           placeholder="Enter your Contact No."
           className={useStyles.textField}
@@ -97,7 +112,7 @@ render(){
         <TextField
           id="standard-password-input"
           label="Set your Password"
-          name="Password"
+          name="password"
           className={useStyles.textField}
           type="password"
           onChange={this.takeInput.bind(this)}
@@ -105,7 +120,7 @@ render(){
           margin="normal"
         />
         <br/><br/>
-        <label id='errmsg' style={{color:'#ed8ea1'}}></label>
+        <label id='errmsg2' style={{color:'#ed8ea1'}}></label>
       
         {  this.state.loader?(<div>
       <CircularProgress color="secondary" />
@@ -113,6 +128,7 @@ render(){
 
         <br/>
       </CardContent>
+
       <CardActions>
         <Button size="small" onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
         <Button size="small" onClick={()=>{this.props.history.push({pathname:'/'})}}>Sign In</Button>

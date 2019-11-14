@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container } from '@material-ui/core';
 import Header from './header';
+import axios from 'axios';
 import {store} from "../models/store";
 import {connect}  from 'react-redux';
 
@@ -29,13 +30,13 @@ const useStyles = makeStyles({
   },
 });
 
-class SignInCard extends React.Component {
+export default class SignInCard extends React.Component {
   constructor(props){
     super(props);
-    console.log('props in logincard are :',props);
-    this.path=props.state.loctaion;
-    console.log(props.state.location);
-    console.log(this.path);
+    // console.log('props in logincard are :',props);
+    // this.path=props.state.loctaion;
+    // console.log(props.state.location);
+    // console.log(this.path);
     this.LoginObj={};
     this.state={'loader':false};
   }
@@ -46,13 +47,26 @@ class SignInCard extends React.Component {
     this.LoginObj[key]=value;
   }
   handleSubmit(){
-    console.log(this.LoginObj);
-    store.dispatch({loginobj:this.LoginObj,type:'login'});
-    //if(this.LoginObj.UserId==this.LoginObj.Password){
-      this.props.history.push({pathname:this.pathname,state:{user:this.LoginObj.UserId}})
-    //}
     this.setState({loader:'true'});
-    document.getElementById('errmsg').innerText='Incorrect UserId or ReferenceId..Try Again';
+    console.log(this.LoginObj);
+   // store.dispatch({loginobj:this.LoginObj,type:'login'});
+    axios.post("https://pollsmernrestapi.herokuapp.com/login",this.LoginObj).then(res=>{
+      this.setState({'loader':false});
+      console.log(res);
+  if(res.data==="Invalid User Credentials"){
+  document.getElementById('errmsg').innerText='Incorrect UserId or Password..Try Again';
+  }
+  else{
+    this.props.history.push({pathname:'/user',state:{user:this.LoginObj.userid}});
+  }
+    }).catch(err=>{
+      alert("something went wrong");
+      console.log(err)});
+    
+
+    // if(this.LoginObj.UserId==this.LoginObj.Password){
+    //   this.props.history.push({pathname:'/user',state:{user:this.LoginObj.UserId}})
+    // }
   }
 render(){
   console.log('prps in render in loginjs', this.path);
@@ -75,7 +89,7 @@ render(){
         <TextField
           required
           id="standard-required"
-          name="UserId"
+          name="userid"
           label="User Id"
           placeholder="Enter User Id here"
           className={useStyles.textField}
@@ -86,7 +100,7 @@ render(){
         <TextField
           id="standard-password-input"
           label="Password"
-          name="Password"
+          name="password"
           className={useStyles.textField}
           type="password"
           onChange={this.takeInput.bind(this)}
@@ -113,11 +127,11 @@ render(){
   );
 }
 }
-const mapStateToProps = (state)=>{
-console.log('mapsttoprs from loginjs' ,state);
-  return {
-      state: state           
-  };
-}
-var fxn=connect(mapStateToProps);
-export default fxn(SignInCard);
+// const mapStateToProps = (state)=>{
+// console.log('mapsttoprs from loginjs' ,state);
+//   return {
+//       state: state           
+//   };
+// }
+// var fxn=connect(mapStateToProps);
+// export default fxn(SignInCard);
