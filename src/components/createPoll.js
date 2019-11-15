@@ -19,8 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CreatePoll() {
+export default function CreatePoll(props) {
  // const classes = useStyles();
+ console.log(props);
  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -54,7 +55,7 @@ export default function CreatePoll() {
     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title"  >
         <DialogTitle id="form-dialog-title">Create New Poll</DialogTitle>
         <DialogContent>
-         <NewPoll/>
+         <NewPoll userid={props.userid} _id={props._id} openDialog={handleClickOpen.bind(this)} closeDialog={handleClose.bind(this)} />
         </DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClose} color="primary">

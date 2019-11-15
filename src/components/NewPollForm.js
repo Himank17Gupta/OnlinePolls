@@ -8,10 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container } from '@material-ui/core';
-
+import axios from 'axios';
 const useStyles = makeStyles({
   card: {
-    minWidth: 275,
+    minWidth: 450,
   },
   bullet: {
     display: 'inline-block',
@@ -29,26 +29,44 @@ const useStyles = makeStyles({
 export default class NewPoll extends React.Component {
   constructor(props){
     super(props);
-    this.PollObj={Question:"",Description:"",Options:[],Date:''};
+    console.log(props);
+    this.optionobj={option1:'',option2:'',option3:'',option4:''};
+    this.PollObj={user_Id:props._id,question:"",description:"",options:[],created_on:''};
     this.state={'loader':false};
   }
 
   takeInput(event){
     var key=event.target.name;
     var value=event.target.value;
-    if(key=="Question"||key=="Description")
+    if(key=="question"||key=="description")
     this.PollObj[key]=value;
     else{
-      this.PollObj.Options[key]=value;
+      this.optionobj[key]=value;
     }
   }
   handleCreate(){
-    this.PollObj.Date=Date.now();
+    this.PollObj.options=Object.values(this.optionobj);
+    this.PollObj.created_on=Date.now();
     console.log(this.PollObj);
-   
     this.setState({loader:'true'});
     
+    axios.post("https://pollsmernrestapi.herokuapp.com/createPoll",this.PollObj).then(res=>{
+      this.setState({'loader':false});
+      console.log(res);
+  if(res.data==="Invalid User Credentials"){
+  document.getElementById('errmsg3').innerText=res.data;
   }
+  else{
+    document.getElementById('errmsg3').innerText='Poll Added';
+    alert(res.data);
+  }
+    }).catch(err=>{
+      alert("something went wrong");
+      console.log(err)});
+  }
+
+
+
 render(){
   return (
     <>
@@ -60,7 +78,7 @@ render(){
         <TextField
           required
           id="standard-required"
-          name="Question"
+          name="question"
           label="Question?"
           placeholder="enter Question here.."
           className={useStyles.textField}
@@ -71,7 +89,7 @@ render(){
         <TextField
           id="standard-required"
           label="Description of the Poll"
-          name="Description"
+          name="description"
           className={useStyles.textField}
           onChange={this.takeInput.bind(this)}
           autoComplete="current-password"
@@ -81,7 +99,7 @@ render(){
         <TextField
           id="standard-required"
           label="Option 1"
-          name="Option1"
+          name="option1"
           className={useStyles.textField}
           onChange={this.takeInput.bind(this)}
           autoComplete="current-password"
@@ -91,7 +109,7 @@ render(){
         <TextField
           id="standard-required"
           label="Option 2"
-          name="Option2"
+          name="option2"
           className={useStyles.textField}
           onChange={this.takeInput.bind(this)}
           autoComplete="current-password"
@@ -101,7 +119,7 @@ render(){
         <TextField
           id="standard-required"
           label="Option 3"
-          name="Option3"
+          name="option3"
           className={useStyles.textField}
           onChange={this.takeInput.bind(this)}
           autoComplete="current-password"
@@ -111,14 +129,14 @@ render(){
         <TextField
           id="standard-required"
           label="Option 4"
-          name="Option4"
+          name="option4"
           className={useStyles.textField}
           onChange={this.takeInput.bind(this)}
           autoComplete="current-password"
           margin="normal"
         />
         <br/>
-        <label id='errmsg' style={{color:'#ed8ea1'}}></label>
+        <label id='errmsg3' style={{color:'#ed8ea1'}}></label>
       
         {  this.state.loader?(<div>
       <CircularProgress color="secondary" />
@@ -128,7 +146,7 @@ render(){
       </CardContent>
       <CardActions>
         <Button size="small" onClick={this.handleCreate.bind(this)}>Create New </Button>
-        <Button size="small" onClick={(()=>{console.log('skip')})}>Skip</Button>
+        <Button size="small" onClick={(()=>{this.props.closeDialog()})}>Skip</Button>
       </CardActions>
     </Card>
     </div>

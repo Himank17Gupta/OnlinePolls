@@ -7,12 +7,13 @@ import { BrowserRouter,Route,Switch,Redirect } from 'react-router-dom';
 function UserDashBoard(props){
     console.log(props);
     var userid=props.location.state.user;
+    var _id=props.location.state.user_id;
     return(
     <Container maxWidth='md'>
     <div>
         <UserHeader user={userid}/>
         <br/>
-    <CreatePoll ></CreatePoll>
+    <CreatePoll userid={userid} _id={_id} ></CreatePoll>
     <br/>
     <PollList  props={props}  />
     </div>
