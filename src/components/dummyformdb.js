@@ -8,8 +8,10 @@ function ProgressBar(props){
   if(props.selected==props.option){votes+=1;color='#b5315d'}
     //'#c971a5'}
   var votepercentage=(votes/tvotes);
+  votepercentage =isNaN(votepercentage)?0:votepercentage;
   votepercentage*=100;
- votepercentage= votepercentage.toFixed(2);
+  votepercentage= votepercentage.toFixed(2);
+console.log(votepercentage);
 
     return(
 

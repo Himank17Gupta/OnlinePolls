@@ -17,10 +17,11 @@ const classes = makeStyles(theme => ({
 }));
 export default function PollVote(props){
     console.log(props);
-    var pollid=props.location.state.poll;
+    var pollid=props.location.state.poll._id;
     var userid=props.location.state.user.user;
-var demopoll={Question:'dummy question for testing',Description:'dummy description for testing purposes elongated',
-              Options:[ {option:"Option1",votes:5},{option:"Option2",votes:0},{option:"Option3",votes:3}],Date:''}
+var demopoll= props.location.state.poll;
+//{Question:'dummy question for testing',Description:'dummy description for testing purposes elongated',
+  //            Options:[ {option:"Option1",votes:5},{option:"Option2",votes:0},{option:"Option3",votes:3}],Date:''}
 
 var [selectedOption,selectOption]=useState(null);
 
@@ -33,6 +34,8 @@ function handleOptionSelect(opid){
 
 function handleVoteSubmit(){
   console.log(selectedOption +"Rest Api Call with Axios");
+
+  
 }
 
 
