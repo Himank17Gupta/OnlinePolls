@@ -27,12 +27,18 @@ console.log(this.state.pollArray);
 
   render(){
     console.log(this.state.pollArray);
+
+    var columns;
+    console.log(window.innerWidth);
+if(window.innerWidth<1000&&window.innerWidth>500){columns=2}
+if(window.innerWidth<500){columns=1}
+else columns=3;
     return(
     <div>
         
     polllists here ->..loader..->}<br/>
 
-    <GridList cols={3} spacing={25} >
+    <GridList cols={columns} spacing={25} >
       {/* {this.nums.map(n => {
         return (
           <GridListTile key={n} style={{height:'100%'}} >

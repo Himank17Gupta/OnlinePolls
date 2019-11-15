@@ -5,7 +5,7 @@ function ProgressBar(props){
   var votes=props.votes;
   var tvotes=props.totalvotes;
   var color='#6cadeb';
-  if(props.selected==props.option){votes+=1;color='#b5315d'}
+  if(props.selected==props.o_id){votes+=1;color='#b5315d'}
     //'#c971a5'}
   var votepercentage=(votes/tvotes);
   votepercentage =isNaN(votepercentage)?0:votepercentage;
@@ -16,8 +16,8 @@ console.log(votepercentage);
     return(
 
       <div id="myProgress"  style={{ width: '100%',backgroundColor:'#ddd', borderRadius:'22px', cursor:'pointer'}}  
-      onClick={()=>{console.log(props.option);
-      props.handleOptionSelect(props.option);
+      onClick={()=>{console.log(props);
+      props.handleOptionSelect(props.o_id);
       }} >
    <div id="myBar" 
    style={{

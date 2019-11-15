@@ -33,7 +33,7 @@ function handleOptionSelect(opid){
 //handleOptionSelect doesn't change the poll component objects and vote digits but do it only static way.
 
 function handleVoteSubmit(){
-  console.log(selectedOption +"Rest Api Call with Axios");
+  console.log(selectedOption + pollid +userid+"Rest Api Call with Axios");
 
   
 }
@@ -63,7 +63,7 @@ if(selectedOption){totalvotes+=1;console.log(totalvotes);}
           <Box component="div" display="block" p={0.5} m={0.5} color="text.secondary" bgcolor="background.paper">
           {oObj.option} 
         </Box>
-<ProgressBar option ={oObj.option} votes={oObj.votes} totalvotes={totalvotes} selected={selectedOption} handleOptionSelect={handleOptionSelect.bind(this)} />
+<ProgressBar option ={oObj.option} votes={oObj.votes} o_id={oObj._id} totalvotes={totalvotes} selected={selectedOption} handleOptionSelect={handleOptionSelect.bind(this)} />
 </>
       )})}
 
