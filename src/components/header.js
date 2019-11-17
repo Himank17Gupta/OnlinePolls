@@ -30,7 +30,7 @@ export default function Header() {
              <MenuIcon /> 
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Online Polling App
+            Online Polling Application
           </Typography>
           <Button color="inherit">Dummy</Button>
           <Button color="inherit">Dummy</Button>
