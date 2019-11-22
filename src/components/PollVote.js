@@ -18,9 +18,13 @@ const classes = makeStyles(theme => ({
 }));
 export default function PollVote(props){
     console.log(props);
-    var pollid=props.location.state.poll._id;
+    var pollid=props.location.state.poll._id; 
     var userid=props.location.state.user.user_id;
-var demopoll= props.location.state.poll;
+    var demopoll= props.location.state.poll;
+    axios.post("https://pollsmernrestapi.herokuapp.com/findPoll",{poll_id:pollid}).then((res)=>{
+    demopoll=res.data;
+  }).catch(err=>console.log(err));
+
 //{Question:'dummy question for testing',Description:'dummy description for testing purposes elongated',
   //            Options:[ {option:"Option1",votes:5},{option:"Option2",votes:0},{option:"Option3",votes:3}],Date:''}
 
@@ -31,6 +35,7 @@ var [pollc,changepoll]=useState(demopoll);
 
 useEffect(() => {
   console.log('useEffect called');
+ 
 });
 
 function handleOptionSelect(opid){
@@ -46,7 +51,7 @@ var voteobj={"u_id":userid,"p_id":pollid,"o_id":selectedOption};
 axios.post("https://pollsmernrestapi.herokuapp.com/vote",voteobj).then((res)=>{
   console.log(res);
   var head=window.document.getElementById('votedesc');
- if(res.data=="vote added"){head.innerText="Your Vote has been casted for this Poll";changeLoader(loader=false);}
+ if(res.data=="vote added"){head.innerText="Your Vote has been casted for this Poll";changeLoader(loader=false);selectOption(selectedOption=null)}
  else {head.innerText="You have already Voted for this Poll";changeLoader(loader=false);selectOption(selectedOption=null)};
  axios.post("https://pollsmernrestapi.herokuapp.com/findPoll",{poll_id:pollid}).then((res)=>{
  changepoll(pollc=res.data); 
