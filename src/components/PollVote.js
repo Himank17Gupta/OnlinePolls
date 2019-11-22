@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { Container, Button } from '@material-ui/core';
 import UserHeader from './userHeader';
 import Box from '@material-ui/core/Box';
@@ -26,7 +26,13 @@ var demopoll= props.location.state.poll;
 
 var [selectedOption,selectOption]=useState(null);
 var [loader,changeLoader]=useState(false);
+var [pollc,changepoll]=useState(demopoll);
 //handleOptionSelect doesn't change the poll component objects and vote digits but do it only static way.
+
+useEffect(() => {
+  console.log('useEffect called');
+});
+
 function handleOptionSelect(opid){
   console.log(opid);
   selectOption(selectedOption=opid);
@@ -35,22 +41,26 @@ function handleOptionSelect(opid){
 
 function handleVoteSubmit(){
   changeLoader(loader=true);
-  console.log(selectedOption + 'fff ' + pollid + 'fff ' +userid+ 'fff ' +"Rest Api Call with Axios");
+ // console.log(selectedOption + 'fff ' + pollid + 'fff ' +userid+ 'fff ' +"Rest Api Call with Axios");
 var voteobj={"u_id":userid,"p_id":pollid,"o_id":selectedOption};
 axios.post("https://pollsmernrestapi.herokuapp.com/vote",voteobj).then((res)=>{
   console.log(res);
   var head=window.document.getElementById('votedesc');
  if(res.data=="vote added"){head.innerText="Your Vote has been casted for this Poll";changeLoader(loader=false);}
- else {head.innerText="You Vote has already been casted for this Poll";changeLoader(loader=false);};
-}).catch(err=>console.log(err))
+ else {head.innerText="You have already Voted for this Poll";changeLoader(loader=false);selectOption(selectedOption=null)};
+ axios.post("https://pollsmernrestapi.herokuapp.com/findPoll",{poll_id:pollid}).then((res)=>{
+ changepoll(pollc=res.data); 
+}).catch(err=>console.log(err));
+}).catch(err=>console.log(err));
 
 }
 
 
 console.log(selectedOption);
 console.log(demopoll);
+console.log(pollc);
 var totalvotes=0;
-demopoll.Options.forEach(obj=>{totalvotes+=obj.votes});
+pollc.Options.forEach(obj=>{totalvotes+=obj.votes});
 console.log(totalvotes);
 if(selectedOption){totalvotes+=1;console.log(totalvotes);}
 
@@ -60,14 +70,14 @@ if(selectedOption){totalvotes+=1;console.log(totalvotes);}
         <br/>
         <h3>poll vote component {pollid} </h3>
         <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper">
-        {demopoll.Question} ?
+        {pollc.Question} ?
       </Box>
       <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper"  >
-        {demopoll.Description} .
+        {pollc.Description} .
       </Box>
       </div>
 
-      {demopoll.Options.map(oObj=>{return(<>
+      {pollc.Options.map(oObj=>{return(<>
           <Box component="div" display="block" p={0.5} m={0.5} color="text.secondary" bgcolor="background.paper">
           {oObj.option} 
         </Box>
