@@ -21,8 +21,17 @@ export default function PollVote(props){
     var pollid=props.location.state.poll._id; 
     var userid=props.location.state.user.user_id;
     var demopoll= props.location.state.poll;
-    axios.post("https://pollsmernrestapi.herokuapp.com/findPoll",{poll_id:pollid}).then((res)=>{
-    demopoll=res.data;
+    var totalvotes=0;
+    demopoll.Options.forEach(opt=>totalvotes+opt.votes);
+    axios.post("https://pollsmernrestapi.herokuapp.com/findPoll",{poll_id:pollid}).then(async (res)=>{
+      console.log('inside findpoll');
+       let ttlvfromres=0;
+       console.log(res);
+     await res.data.Options.forEach(opt=>ttlvfromres+opt.votes);
+    ttlvfromres= res.data.Options.reduce((a,opt)=>a+opt.votes,0) ;
+     console.log(ttlvfromres);
+     console.log(totalvotes);
+     if(ttlvfromres!=totalvotes){changepoll(pollc=res.data);}
   }).catch(err=>console.log(err));
 
 //{Question:'dummy question for testing',Description:'dummy description for testing purposes elongated',
@@ -46,6 +55,8 @@ function handleOptionSelect(opid){
 
 function handleVoteSubmit(){
   changeLoader(loader=true);
+  console.log('1-demopoll',demopoll);
+ // changepoll( pollc.Question='hehehe');
  // console.log(selectedOption + 'fff ' + pollid + 'fff ' +userid+ 'fff ' +"Rest Api Call with Axios");
 var voteobj={"u_id":userid,"p_id":pollid,"o_id":selectedOption};
 axios.post("https://pollsmernrestapi.herokuapp.com/vote",voteobj).then((res)=>{

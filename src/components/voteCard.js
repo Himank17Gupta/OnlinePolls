@@ -27,9 +27,16 @@ var vote={title:"XYZ",options:['a','b','c','d'],date:1573722717633};
 console.log(props);
 console.log(props.props.props.location.state);
 var user=props.props.props.location.state;
+
+function onVotesucc(obj){
+console.log('obj to parent ',obj);
+}
+
 return (
     
-      <Card title={vote.title} onClick={()=>{console.log('votecard clicked',props);props.props.props.history.push({pathname:'/PollVote',state:{poll:props.poll,user:user}})}} >
+      <Card title={vote.title} onClick={()=>{console.log('votecard clicked',props);
+      props.props.props.history.push({pathname:'/PollVote',
+      state:{poll:props.poll,user:user}})}} >
     <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
