@@ -60,7 +60,7 @@ return (
          //aria-label="main mailbox folders"
          >
            {props.poll.Options.map(option=>(
- <ListItem button>        
+ <ListItem key={option._id} button>        
  <ListItemText primary={option.option} />
 </ListItem>
 
