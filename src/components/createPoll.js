@@ -18,7 +18,6 @@ const useStyles = makeStyles({
     maxWidth: 345,
   },
 });
-
 export default function CreatePoll(props) {
  // const classes = useStyles();
  console.log(props);
@@ -58,7 +57,7 @@ export default function CreatePoll(props) {
     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title"  >
         <DialogTitle id="form-dialog-title">Create New Poll</DialogTitle>
         <DialogContent>
-         <NewPoll userid={props.userid} _id={props._id} openDialog={handleClickOpen.bind(this)} closeDialog={handleClose.bind(this)} />
+         <NewPoll refreshpolls={props.refresh.bind(this)} userid={props.userid} _id={props._id} openDialog={handleClickOpen.bind(this)} closeDialog={handleClose.bind(this)} />
         </DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClose} color="primary">

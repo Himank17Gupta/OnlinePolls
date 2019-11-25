@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function VoteCard(props){
-var vote={title:"XYZ",options:['a','b','c','d'],date:1573722717633};
+// var vote={title:"XYZ",options:['a','b','c','d'],date:1573722717633};
 console.log(props);
 console.log(props.props.props.location.state);
 var user=props.props.props.location.state;

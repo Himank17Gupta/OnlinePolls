@@ -27,11 +27,11 @@ console.log(this.state.pollArray);
 }
 
 
-  render(){
-    console.log(this.state.pollArray);
+render(){
+  console.log(this.state.pollArray);
 
-    var columns;
-    console.log(window.innerWidth);
+  var columns;
+  console.log(window.innerWidth);
 if(window.innerWidth<1000&&window.innerWidth>500){columns=2}
 if(window.innerWidth<500){columns=1}
 else columns=3;

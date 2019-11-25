@@ -30,6 +30,8 @@ export default class NewPoll extends React.Component {
   constructor(props){
     super(props);
     console.log(props);
+    this.fxn=props.refreshpolls;
+    //props.refreshpolls();
     this.optionobj={option1:'',option2:'',option3:'',option4:''};
     this.PollObj={user_Id:props._id,question:"",description:"",options:[],created_on:''};
     this.state={'loader':false};
@@ -59,6 +61,8 @@ export default class NewPoll extends React.Component {
   else{
     document.getElementById('errmsg3').innerText='Poll Added';
     alert(res.data);
+    this.fxn();
+    //props.refreshpolls();
   }
     }).catch(err=>{
       alert("something went wrong");
