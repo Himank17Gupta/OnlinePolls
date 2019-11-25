@@ -27,7 +27,6 @@ export default function PollVote(props){
       console.log('inside findpoll');
        let ttlvfromres=0;
        console.log(res);
-     await res.data.Options.forEach(opt=>ttlvfromres+opt.votes);
     ttlvfromres= res.data.Options.reduce((a,opt)=>a+opt.votes,0) ;
      console.log(ttlvfromres);
      console.log(totalvotes);

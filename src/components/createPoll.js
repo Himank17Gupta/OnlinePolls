@@ -42,7 +42,10 @@ export default function CreatePoll(props) {
             Create New Poll
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Dummy text
+            Enter upto four options to select from.. 
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="h4">
+            by creating, your poll will be visible to all the visitors and logged in memebers can cast vote only once. 
           </Typography>
         </CardContent>
       </CardActionArea>
