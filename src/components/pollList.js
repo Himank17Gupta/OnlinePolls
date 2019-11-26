@@ -7,6 +7,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 class PollList extends React.Component{
   constructor(props){
    super(props);
+    this.shouldupdate=props.shouldrefresh; 
     this.nums=['a','b','c','d','e'];
     this.polls=[];
     this.state={pollArray:[],progress:true};
@@ -29,7 +30,8 @@ console.log(this.state.pollArray);
 
 render(){
   console.log(this.state.pollArray);
-
+  console.log(this.shouldupdate);
+if(this.shouldupdate==true){this.shouldupdate=false;this.forceUpdate();}
   var columns;
   console.log(window.innerWidth);
 if(window.innerWidth<1000&&window.innerWidth>500){columns=2}
