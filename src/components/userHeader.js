@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function UserHeader(props) {
   const classes = useStyles();
-
+console.log('rendering userheader');
   return (
     <div className={classes.root}>
       <AppBar position="static">

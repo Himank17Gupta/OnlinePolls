@@ -4,13 +4,14 @@ import { Container, GridList, GridListTile } from '@material-ui/core';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { stat } from 'fs';
 class PollList extends React.Component{
   constructor(props){
    super(props);
-    this.shouldupdate=props.shouldrefresh; 
+    console.log(props.shouldrefresh); 
     this.nums=['a','b','c','d','e'];
     this.polls=[];
-    this.state={pollArray:[],progress:true};
+    this.state={pollArray:[],progress:true,shouldrefresh:props.shouldrefresh};
     this.prp=props;
     console.log(props);
   }
@@ -29,9 +30,11 @@ console.log(this.state.pollArray);
 
 
 render(){
+  //console.log(props.shouldrefresh);
+  console.log(this.state.shouldrefresh);
   console.log(this.state.pollArray);
-  console.log(this.shouldupdate);
-if(this.shouldupdate==true){this.shouldupdate=false;this.forceUpdate();}
+  //console.log(this.shouldupdate);
+//if(this.shouldupdate==true){this.forceUpdate();}
   var columns;
   console.log(window.innerWidth);
 if(window.innerWidth<1000&&window.innerWidth>500){columns=2}

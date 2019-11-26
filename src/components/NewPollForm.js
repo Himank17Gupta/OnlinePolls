@@ -32,12 +32,13 @@ export default class NewPoll extends React.Component {
     console.log(props);
     this.fxn=props.refreshpolls;
     //props.refreshpolls();
-    this.optionobj={option1:'',option2:'',option3:'',option4:''};
+    this.optionobj={option1:null,option2:null,option3:null,option4:null};
     this.PollObj={user_Id:props._id,question:"",description:"",options:[],created_on:''};
     this.state={'loader':false};
   }
 
   takeInput(event){
+   // this.fxn();
     var key=event.target.name;
     var value=event.target.value;
     if(key=="question"||key=="description")
@@ -47,7 +48,8 @@ export default class NewPoll extends React.Component {
     }
   }
   handleCreate(){
-    this.PollObj.options=Object.values(this.optionobj);
+    var arr=Object.values(this.optionobj);
+    this.PollObj.options=arr.filter(opt=>opt!=null);
     this.PollObj.created_on=Date.now();
     console.log(this.PollObj);
     this.setState({loader:'true'});

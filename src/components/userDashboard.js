@@ -10,6 +10,7 @@ class UserDashBoard extends React.Component{
         console.log(props);
         this.userid=props.location.state.user;
         this._id=props.location.state.user_id;
+        this.state={reloadlist:false};
     }
     
   //  console.log(props);
@@ -17,12 +18,11 @@ class UserDashBoard extends React.Component{
    // var _id=props.location.state.user_id;
    // var [reloadlist,shouldReload]=useState(false);
      refresh=()=>{
-    //    console.log(reloadlist);
-      //  shouldReload(reloadlist=!reloadlist);
-        //console.log(reloadlist);
     console.log('refresh called');
+    this.setState({...this.state,reloadlist:true});
      }
      render(){
+         console.log(this.state.reloadlist);
     return(
     <Container maxWidth='md'>
     <div>
@@ -30,8 +30,7 @@ class UserDashBoard extends React.Component{
         <br/>
     <CreatePoll refresh={this.refresh.bind(this)} userid={this.userid} _id={this._id} ></CreatePoll>
     <br/>
-    <PollList 
-    //shouldrefresh={reloadlist}
+    <PollList shouldrefresh={this.state.reloadlist}
      props={this.props}  />
     </div>
     </Container>
