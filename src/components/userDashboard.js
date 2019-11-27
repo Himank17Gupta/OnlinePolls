@@ -16,11 +16,12 @@ class UserDashBoard extends React.Component{
         this.userid=props.location.state.user||'unsigneduser';
         this._id=props.location.state.user_id||'unsigneduser';
         }
-        this.state={reloadlist:false};
+        this.state={reloadlist:false,signOut:false};
     }
-    Redirect(){
-        console.log('redirect called');
-this.props.history.push({pathname:'/'});
+    signOut(){
+        console.log('signout called');
+        this.setState({...this.state,signOut:true});
+
     }
   //  console.log(props);
    // var userid=props.location.state.user;
@@ -28,6 +29,8 @@ this.props.history.push({pathname:'/'});
    // var [reloadlist,shouldReload]=useState(false);
      refresh=()=>{
     console.log('refresh called');
+    this.userid='unsigneduser';
+    this._id='unsigneduser';
     this.setState({...this.state,reloadlist:true});
      }
      render(){
@@ -35,11 +38,14 @@ this.props.history.push({pathname:'/'});
          if(this.userid=='unsigneduser'){alert('login to continue');
          this.props.history.push({pathname:'/'});
         };
+        if(this.state.signOut==true){
+           window.confirm('Are you sure you want SignOut?')?this.props.history.push({pathname:'/'}):console.log('SO cancelled');
+        }
          console.log(this.state.reloadlist);
     return(
     <Container maxWidth='lg'>
     <div>
-        <UserHeader user={ this.userid}/>
+        <UserHeader user={ this.userid} signOut={this.signOut.bind(this)} />
         <br/>
     <CreatePoll refresh={this.refresh.bind(this)} userid={this.userid} _id={this._id} ></CreatePoll>
     <br/>

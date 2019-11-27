@@ -80,6 +80,10 @@ axios.post("https://pollsmernrestapi.herokuapp.com/vote",voteobj).then((res)=>{
 }).catch(err=>console.log(err));
 
 }
+function signOut(){
+  window.confirm('Are you sure you want SignOut?')?props.history.push({pathname:'/'}):console.log('SO cancelled');
+  
+}
 
 if(props.location.state==undefined){
   alert('Please Login to continue');
@@ -98,7 +102,7 @@ if(selectedOption){totalvotes+=1;console.log(totalvotes);}
 
     return(
         <Container maxWidth='lg'>
-        <div><UserHeader user={username}/>
+        <div><UserHeader user={username} signOut={signOut.bind(this)}  />
         <br/>
         <h3 style={{textAlign:"center",color:'#979ec7'}}>Cast your vote here    </h3>
         <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper" style={{textAlign:"center"}}>

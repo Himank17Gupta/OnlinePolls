@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
 }));
-
 export default function UserHeader(props) {
   const classes = useStyles();
 console.log('rendering userheader');
@@ -33,7 +32,7 @@ console.log('rendering userheader');
             Welcome {props.user}
           </Typography>
           <Button color="inherit">Profile</Button>
-          <Button color="inherit">Sign Out</Button>
+          <Button color="inherit" onClick={()=>{props.signOut()}}>Sign Out</Button>
         </Toolbar>
       </AppBar>
     </div>
