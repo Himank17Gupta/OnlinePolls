@@ -8,11 +8,20 @@ class UserDashBoard extends React.Component{
     constructor(props){
         super(props);
         console.log(props);
-        this.userid=props.location.state.user;
-        this._id=props.location.state.user_id;
+        ///this.his=props.history;
+        if(props.location.state==undefined){ 
+            this.userid='unsigneduser';
+            this._id='unsigneduser';
+        }else{
+        this.userid=props.location.state.user||'unsigneduser';
+        this._id=props.location.state.user_id||'unsigneduser';
+        }
         this.state={reloadlist:false};
     }
-    
+    Redirect(){
+        console.log('redirect called');
+this.props.history.push({pathname:'/'});
+    }
   //  console.log(props);
    // var userid=props.location.state.user;
    // var _id=props.location.state.user_id;
@@ -22,9 +31,13 @@ class UserDashBoard extends React.Component{
     this.setState({...this.state,reloadlist:true});
      }
      render(){
+    
+         if(this.userid=='unsigneduser'){alert('login to continue');
+         this.props.history.push({pathname:'/'});
+        };
          console.log(this.state.reloadlist);
     return(
-    <Container maxWidth='md'>
+    <Container maxWidth='lg'>
     <div>
         <UserHeader user={ this.userid}/>
         <br/>

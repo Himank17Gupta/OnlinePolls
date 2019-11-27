@@ -18,11 +18,22 @@ const classes = makeStyles(theme => ({
 }));
 export default function PollVote(props){
     console.log(props);
+    if(props.location.state==undefined){
+      alert('Login to continue');
+      props.history.push({pathname:'/'});
+      var pollid='unsigned'; 
+      var userid='unsigned';
+      var username='unsigned';
+      var demopoll= 'unsigned';
+      var totalvotes=0;
+    }else{
     var pollid=props.location.state.poll._id; 
     var userid=props.location.state.user.user_id;
+    var username=props.location.state.user.user;
     var demopoll= props.location.state.poll;
     var totalvotes=0;
     demopoll.Options.forEach(opt=>totalvotes+opt.votes);
+    }
     axios.post("https://pollsmernrestapi.herokuapp.com/findPoll",{poll_id:pollid}).then(async (res)=>{
       console.log('inside findpoll');
        let ttlvfromres=0;
@@ -70,7 +81,13 @@ axios.post("https://pollsmernrestapi.herokuapp.com/vote",voteobj).then((res)=>{
 
 }
 
-
+if(props.location.state==undefined){
+  alert('Please Login to continue');
+  props.history.push({pathname:'/'})
+  return(
+  <></>
+  )}
+  else{
 console.log(selectedOption);
 console.log(demopoll);
 console.log(pollc);
@@ -80,14 +97,14 @@ console.log(totalvotes);
 if(selectedOption){totalvotes+=1;console.log(totalvotes);}
 
     return(
-        <Container maxWidth='md'>
-        <div><UserHeader user={userid}/>
+        <Container maxWidth='lg'>
+        <div><UserHeader user={username}/>
         <br/>
-        <h3>poll vote component {pollid} </h3>
-        <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper">
+        <h3 style={{textAlign:"center",color:'#979ec7'}}>Cast your vote here    </h3>
+        <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper" style={{textAlign:"center"}}>
         {pollc.Question} ?
       </Box>
-      <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper"  >
+      <Box component="div" display="block" p={1} m={1} color="text.secondary" bgcolor="background.paper" style={{textAlign:"center"}} >
         {pollc.Description} .
       </Box>
       </div>
@@ -104,7 +121,7 @@ if(selectedOption){totalvotes+=1;console.log(totalvotes);}
       { loader?(<div>
       <CircularProgress color="secondary" />
         </div>):(<></>)}
-      <h2 id='votedesc'></h2>
+      <h2 style={{textAlign:"center",color:'#c91451'}}  id='votedesc'></h2>
       <br/>
 {selectedOption&&<Button variant="contained" color="secondary" style={{backgroundColor:'#b5315d'}} 
 className={classes.button} onClick={handleVoteSubmit}    >
@@ -113,4 +130,5 @@ className={classes.button} onClick={handleVoteSubmit}    >
 
         </Container>
     )
+}
 }

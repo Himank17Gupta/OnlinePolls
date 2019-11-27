@@ -19,7 +19,7 @@ export default class App extends React.Component{
   return(
   <BrowserRouter>
   {/* <Header/> */}
-  <Container  maxWidth="lg"> 
+  <Container  maxWidth="xl"> 
   <Route path="/" exact component={SignInCard} />
   <Route path="/SignUp" component={SignUpCard} />
   <Route path="/user" component={UserDashBoard} />
