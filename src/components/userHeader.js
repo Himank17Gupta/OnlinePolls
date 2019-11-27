@@ -31,7 +31,7 @@ console.log('rendering userheader');
           <Typography variant="h6" className={classes.title}>
             Welcome {props.user}
           </Typography>
-          <Button color="inherit">Profile</Button>
+          <Button color="inherit" onClick={()=>{alert('Coming Soon')}}>Profile</Button>
           <Button color="inherit" onClick={()=>{props.signOut()}}>Sign Out</Button>
         </Toolbar>
       </AppBar>
