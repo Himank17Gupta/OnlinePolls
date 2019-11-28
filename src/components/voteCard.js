@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { Doughnut } from 'react-chartjs-2';
+import Author from './author';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -87,8 +88,12 @@ return (
   <Divider />
     <br/>
     <div className="vote-card__footer">
-      <span>by{props.poll.author} </span> at {props.poll.created_on.toString()}
-      
+      <span>by
+        <Author _id={props.poll.author}/>
+       </span> at {
+     new Date(props.poll.created_on).toDateString()
+     // props.poll.created_on.toString()}
+}
       {/* {new Date().toLocaleString()} */}
       </div>
        </CardContent>
