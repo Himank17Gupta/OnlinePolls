@@ -32,8 +32,8 @@ export default function Header() {
           <Typography variant="h6" className={classes.title}>
             Online Polling Application
           </Typography>
-          <Button color="inherit">Dummy</Button>
-          <Button color="inherit">Dummy</Button>
+          {/* <Button color="inherit">Dummy</Button> */}
+          <Button color="inherit">About</Button>
         </Toolbar>
       </AppBar>
     </div>

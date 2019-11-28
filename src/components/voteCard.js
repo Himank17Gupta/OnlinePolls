@@ -20,34 +20,39 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
   },
 }));
-const data = {
-	labels: [
-		'Red',
-		'Green',
-    'Yellow',
-    'Blue'
-	],
+
+
+export default function VoteCard(props){
+// var vote={title:"XYZ",options:['a','b','c','d'],date:1573722717633};
+console.log(props.poll.Options);
+console.log(props.props.props.location.state);
+var user=props.props.props.location.state;
+var [Tile,ChangeTile]=useState('poll');
+var l=[];
+var d=[];
+props.poll.Options.forEach(obj=>{l.push(obj.option);d.push(obj.votes)});
+
+console.log(l,d);
+var data = {
+	labels: l,
 	datasets: [{
-		data: [30, 50, 100],
+		data: d,
 		backgroundColor: [
 		'#FF6384',
 		'#36A2EB',
-		'#FFCE56'
+    '#FFCE56',
+    '#fcf2fc'
 		],
 		hoverBackgroundColor: [
 		'#FF6384',
 		'#36A2EB',
-		'#FFCE56'
+    '#FFCE56',
+    '#fcf2fc'
 		]
 	}]
 };
 
-export default function VoteCard(props){
-// var vote={title:"XYZ",options:['a','b','c','d'],date:1573722717633};
-console.log(props);
-console.log(props.props.props.location.state);
-var user=props.props.props.location.state;
-var [Tile,ChangeTile]=useState('poll');
+
 return (
     
       <Card title={props.poll.author} onClick={()=>{console.log('votecard clicked',props);
@@ -97,7 +102,7 @@ return (
       )}
       {/* here commenting*/}
 
-          {/* here commenting ends*/}
+      {/* here commenting ends*/}
        
       </CardActionArea>
       <CardActions>
