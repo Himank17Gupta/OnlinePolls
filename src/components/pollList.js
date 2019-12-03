@@ -13,8 +13,20 @@ class PollList extends React.Component{
     this.state={pollArray:[],progress:true,shouldrefresh:props.shouldrefresh};
     this.prp=props;
     console.log(props);
+    //this.userList=props.userList;
   }
-
+componentWillMount(){
+  axios.get('https://pollsmernrestapi.herokuapp.com/getUserIds').then(res=>{
+    console.log(res.data);
+    this.setState({...this.state,userList:res.data})}).catch(err=>console.log(err));
+  
+}
+getAuthor(_id){
+  let author='ghost';
+  console.log(this.state.userList);
+  this.state.userList.forEach(obj=>{if(obj._id==_id)author=obj.userid});
+return author;
+}
 componentDidMount(){
   console.log('compdidmountcalled');
 axios.post("https://pollsmernrestapi.herokuapp.com/getListofPolls",{}).then((res)=>{
@@ -24,6 +36,7 @@ this.setState({...this.state,pollArray:this.polls,progress:false});
   //  console.log(state.pollArray)
 console.log(this.state.pollArray);
 }).catch(err=>console.log(err))
+
 
 }
 
@@ -49,18 +62,11 @@ else columns=3;
     <br/>
 
     <GridList cols={columns} spacing={25} >
-      {/* {this.nums.map(n => {
-        return (
-          <GridListTile key={n} style={{height:'100%'}} >
-            <VoteCard id={n} props={this.prp} />
-          </GridListTile>
-        );
-      })} */}
 
 {this.state.pollArray.map(poll => {
         return (
           <GridListTile key={poll._id} style={{height:'100%'}} >
-            <VoteCard id={poll._id} poll={poll} props={this.prp} />
+            <VoteCard id={poll._id} poll={poll} getAuthor={this.getAuthor.bind(this)} props={this.prp} />
           </GridListTile>
         );
       })}

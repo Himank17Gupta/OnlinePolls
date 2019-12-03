@@ -4,20 +4,25 @@ import PollList from './pollList';
 import { Container } from '@material-ui/core';
 import UserHeader from './userHeader';
 import { BrowserRouter,Route,Switch,Redirect } from 'react-router-dom';
+import Axios from 'axios';
 class UserDashBoard extends React.Component{
     constructor(props){
         super(props);
         console.log(props);
-        ///this.his=props.history;
         if(props.location.state==undefined){ 
             this.userid='unsigneduser';
             this._id='unsigneduser';
         }else{
         this.userid=props.location.state.user||'unsigneduser';
         this._id=props.location.state.user_id||'unsigneduser';
+        
         }
         this.state={reloadlist:false,signOut:false};
     }
+
+  componentWillMount(){
+      Axios.get('https://pollsmernrestapi.herokuapp.com/getUserIds').then(res=>{console.log(res.data);this.setState({...this.state,userList:res.data})}).catch(err=>console.log(err));
+  }  
     signOut(){
         console.log('signout called');
         this.setState({...this.state,signOut:true});
@@ -27,13 +32,14 @@ class UserDashBoard extends React.Component{
    // var userid=props.location.state.user;
    // var _id=props.location.state.user_id;
    // var [reloadlist,shouldReload]=useState(false);
-     refresh=()=>{
+    refresh=()=>{
     console.log('refresh called');
     this.userid='unsigneduser';
     this._id='unsigneduser';
     this.setState({...this.state,reloadlist:true});
      }
-     render(){
+
+render(){
     
          if(this.userid=='unsigneduser'){alert('login to continue');
          this.props.history.push({pathname:'/'});

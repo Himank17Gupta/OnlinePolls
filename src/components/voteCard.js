@@ -12,7 +12,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { Doughnut } from 'react-chartjs-2';
-import Author from './author';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,7 +31,7 @@ var [Tile,ChangeTile]=useState('poll');
 var l=[];
 var d=[];
 props.poll.Options.forEach(obj=>{l.push(obj.option);d.push(obj.votes)});
-
+props.poll.author=props.getAuthor(props.poll.author);
 console.log(l,d);
 var data = {
 	labels: l,
@@ -88,8 +87,8 @@ return (
   <Divider />
     <br/>
     <div className="vote-card__footer">
-      <span>by
-        <Author _id={props.poll.author}/>
+      <span>by &nbsp; 
+       {props.poll.author} ,
        </span> at {
      new Date(props.poll.created_on).toDateString()
      // props.poll.created_on.toString()}
