@@ -19,8 +19,8 @@ const classes = makeStyles(theme => ({
 export default function PollVote(props){
     console.log(props);
     if(props.location.state==undefined){
-      alert('Login to continue');
-      props.history.push({pathname:'/'});
+      // alert('Login to continue');
+      // props.history.push({pathname:'/'});
       var pollid='unsigned'; 
       var userid='unsigned';
       var username='unsigned';

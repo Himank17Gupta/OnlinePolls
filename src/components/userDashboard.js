@@ -19,7 +19,6 @@ class UserDashBoard extends React.Component{
         }
         this.state={reloadlist:false,signOut:false};
     }
-
   componentWillMount(){
       Axios.get('https://pollsmernrestapi.herokuapp.com/getUserIds').then(res=>{console.log(res.data);this.setState({...this.state,userList:res.data})}).catch(err=>console.log(err));
   }  

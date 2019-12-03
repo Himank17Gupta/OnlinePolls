@@ -10,7 +10,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container } from '@material-ui/core';
 import Header from './header';
 import axios from 'axios';
-import { Doughnut } from 'react-chartjs-2';
  
 const useStyles = makeStyles({
   card: {
@@ -28,26 +27,6 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-const data = {
-	labels: [
-		'Red',
-		'Green',
-		'Yellow'
-	],
-	datasets: [{
-		data: [30, 50, 100],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		]
-	}]
-};
 
 export default class SignUpCard extends React.Component {
   constructor(props){
@@ -156,7 +135,6 @@ render(){
       </CardActions>
     </Card>
     </div>
-    <Doughnut data={data} />
     </Container>
     
     </>
