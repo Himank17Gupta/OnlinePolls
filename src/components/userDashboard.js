@@ -58,7 +58,7 @@ class UserDashBoard extends React.Component{
 
 render(){
    // console.log('cs', localStorage.getItem('loggedIn'));
-         if(this.userid=='unsigneduser'||localStorage.getItem('loggedIn')=="false"){alert('login to continue');
+         if(this.userid=='unsigneduser'||localStorage.getItem('loggedIn')=="false"){alert('Please Sign In First to Continue to Polls');
          this.props.history.push({pathname:'/'});
         };
        // if(this.state.signOut==true){

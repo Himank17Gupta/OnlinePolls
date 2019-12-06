@@ -93,7 +93,7 @@ function signOut(){
 }
 
 if(props.location.state==undefined||localStorage.getItem('loggedIn')=="false"){
-  alert('Please Login to continue');
+  alert('Please Sign In First to Continue to Polls');
   props.history.push({pathname:'/'})
   return(
   <></>
