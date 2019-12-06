@@ -34,8 +34,16 @@ class UserDashBoard extends React.Component{
 //     }  
     signOut(){
         console.log('signout called');
-        this.setState({...this.state,signOut:true});
-
+       var Fo=false; 
+       // this.setState({...this.state,signOut:true});
+       Fo= window.confirm('Are you sure you want SignOut?')?true:false;
+      if(Fo){
+          localStorage.setItem('loggedIn',false);
+          this.props.history.push({pathname:'/'})
+        }  
+      else{
+          console.log('SO cancelled');
+          }
     }
   //  console.log(props);
    // var userid=props.location.state.user;
@@ -49,13 +57,12 @@ class UserDashBoard extends React.Component{
      }
 
 render(){
-    
-         if(this.userid=='unsigneduser'){alert('login to continue');
+   // console.log('cs', localStorage.getItem('loggedIn'));
+         if(this.userid=='unsigneduser'||localStorage.getItem('loggedIn')=="false"){alert('login to continue');
          this.props.history.push({pathname:'/'});
         };
-        if(this.state.signOut==true){
-           window.confirm('Are you sure you want SignOut?')?this.props.history.push({pathname:'/'}):console.log('SO cancelled');
-        }
+       // if(this.state.signOut==true){
+        // }
          console.log(this.state.reloadlist);
     return(
     <Container maxWidth='lg'>

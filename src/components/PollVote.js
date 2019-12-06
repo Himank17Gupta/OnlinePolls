@@ -81,11 +81,18 @@ axios.post("https://pollsmernrestapi.herokuapp.com/vote",voteobj).then((res)=>{
 
 }
 function signOut(){
-  window.confirm('Are you sure you want SignOut?')?props.history.push({pathname:'/'}):console.log('SO cancelled');
-  
+  var SO=false;
+ SO= window.confirm('Are you sure you want SignOut?')?true:false;
+  if(SO){
+    localStorage.setItem('loggedIn',false);
+    props.history.push({pathname:'/'})
+  }
+  else{
+    console.log('cancelled SignOut');
+  }
 }
 
-if(props.location.state==undefined){
+if(props.location.state==undefined||localStorage.getItem('loggedIn')=="false"){
   alert('Please Login to continue');
   props.history.push({pathname:'/'})
   return(
