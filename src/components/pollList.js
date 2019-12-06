@@ -16,7 +16,9 @@ class PollList extends React.Component{
     //this.userList=props.userList;
   }
 componentWillMount(){
+ // axios.defaults.headers.common[Authorization] = '345378382wsj';
   axios.get('https://pollsmernrestapi.herokuapp.com/getUserIds').then(res=>{
+ // axios.get('http://localhost:2002/getUserIds').then(res=>{
     console.log(res.data);
     this.setState({...this.state,userList:res.data})}).catch(err=>console.log(err));
   

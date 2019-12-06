@@ -5,6 +5,7 @@ import { Container } from '@material-ui/core';
 import UserHeader from './userHeader';
 import { BrowserRouter,Route,Switch,Redirect } from 'react-router-dom';
 import Axios from 'axios';
+import { options } from '../models/config';
 class UserDashBoard extends React.Component{
     constructor(props){
         super(props);
@@ -19,9 +20,18 @@ class UserDashBoard extends React.Component{
         }
         this.state={reloadlist:false,signOut:false};
     }
-  componentWillMount(){
-      Axios.get('https://pollsmernrestapi.herokuapp.com/getUserIds').then(res=>{console.log(res.data);this.setState({...this.state,userList:res.data})}).catch(err=>console.log(err));
-  }  
+//   componentWillMount(){
+//     //Axios.defaults.headers.common['token'] = localStorage.getItem('token');
+//      // Axios.get('https://pollsmernrestapi.herokuapp.com/getUserIds',
+//       Axios.get('localhost:2002/getUserIds',
+//       {
+//         headers: {
+//             'token': localStorage.getItem('token'),
+//             'Accept' : 'application/json',
+//             'Content-Type': 'application/json'
+//         }
+//     }).then(res=>{console.log(res.data);this.setState({...this.state,userList:res.data})}).catch(err=>console.log(err));
+//     }  
     signOut(){
         console.log('signout called');
         this.setState({...this.state,signOut:true});

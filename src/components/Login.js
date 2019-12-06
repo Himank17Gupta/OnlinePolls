@@ -57,7 +57,8 @@ export default class SignInCard extends React.Component {
   document.getElementById('errmsg').innerText='Incorrect UserId or Password..Try Again';
   }
   else{
-    this.props.history.push({pathname:'/user',state:{user:this.LoginObj.userid,user_id:res.data._id}});
+    localStorage.setItem('token',res.data.token);
+    this.props.history.push({pathname:'/user',state:{user:this.LoginObj.userid,user_id:res.data.doc}});
   }
     }).catch(err=>{
       alert("something went wrong");
