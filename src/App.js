@@ -8,6 +8,7 @@ import UserDashBoard from './components/userDashboard';
 import PollVote from './components/PollVote';
 import ProgressBarPage from './components/dummyformdb';
 import {connect}  from 'react-redux';
+import Profile from './components/Profile';
 //https://pollsmernrestapi.herokuapp.com
 
 export default class App extends React.Component{
@@ -24,6 +25,7 @@ export default class App extends React.Component{
   <Route path="/SignUp" component={SignUpCard} />
   <Route path="/user" component={UserDashBoard} />
   <Route path="/PollVote" component={PollVote} />
+  <Route path='/Profile' component={Profile} />
   </Container>
   
   </BrowserRouter>

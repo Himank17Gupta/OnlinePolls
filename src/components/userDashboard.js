@@ -67,7 +67,7 @@ render(){
     return(
     <Container maxWidth='lg'>
     <div>
-        <UserHeader user={ this.userid} signOut={this.signOut.bind(this)} />
+        <UserHeader props={this.props} user={ this.userid} signOut={this.signOut.bind(this)} />
         <br/>
     <CreatePoll refresh={this.refresh.bind(this)} userid={this.userid} _id={this._id} ></CreatePoll>
     <br/>
