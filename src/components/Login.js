@@ -12,6 +12,7 @@ import Header from './header';
 import axios from 'axios';
 import {store} from "../models/store";
 import {connect}  from 'react-redux';
+import StickyFooter from './footer';
 
 const useStyles = makeStyles({
   card: {
@@ -125,6 +126,7 @@ render(){
     </Card>
     </div>
     </Container>
+    <StickyFooter/>
     </>
   );
 }

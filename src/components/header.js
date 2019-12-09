@@ -33,7 +33,7 @@ export default function Header() {
             Online Polling Application
           </Typography>
           {/* <Button color="inherit">Dummy</Button> */}
-          <Button color="inherit">About</Button>
+          <Button color="inherit">View Polls</Button>
         </Toolbar>
       </AppBar>
     </div>
