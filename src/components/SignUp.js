@@ -10,6 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container } from '@material-ui/core';
 import Header from './header';
 import axios from 'axios';
+import StickyFooter from './footer';
  
 const useStyles = makeStyles({
   card: {
@@ -136,7 +137,7 @@ render(){
     </Card>
     </div>
     </Container>
-    
+    <StickyFooter/>
     </>
   );
 }
