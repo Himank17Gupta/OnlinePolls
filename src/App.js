@@ -32,15 +32,6 @@ export default class App extends React.Component{
   )
 }
 }
-//export default App;
-
-// const mapStateToProps = (state)=>{
-//      return {
-//          state : state              //changed from count:state.length
-//      };
-//  }
-//  var fn=connect(mapStateToProps);
-//  export default fn(App);
 
 
  
