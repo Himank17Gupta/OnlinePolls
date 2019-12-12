@@ -6,7 +6,9 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
+import linked from '../Linked.png';
+import twitter from '../twitter.png';
+import github from '../gmail.png';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary">
@@ -59,9 +61,9 @@ export default function StickyFooter() {
         <Grid item xs={6}>
           <div style={{textAlign:"center"}}>
             <h2 style={{margin:'0px'}} >About</h2>
-            Sole Purpose of this Web App is to generate polls
-            <br/>by multiple logged in users and to act upon them..<br/>
-            Use this App for creating polls, do surveys, share it with friends and much more..
+            Use this App for generating polls by multiple logged in users,
+             do surveys, share it with friends and much more..
+             <br/>
             </div>
         </Grid>
         
@@ -71,8 +73,14 @@ export default function StickyFooter() {
         <Grid item xs={3}>
           
             <h2 style={{margin:'0px'}}>Contact Developer</h2>
-            <li/>
-            <li/>
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Link href="www.fb.com"> <img src={linked} /></Link>
+            &nbsp;&nbsp; 
+            <Link href="www.fb.com"> <img src={github} /></Link>
+            &nbsp;&nbsp;
+            <Link href="www.fb.com"> <img src={twitter} /></Link>
+            &nbsp;&nbsp;
           
         </Grid>
         
