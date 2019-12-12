@@ -6,7 +6,6 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import purple from '@material-ui/core/colors/indigo';
 
 function Copyright() {
   return (
@@ -59,10 +58,11 @@ export default function StickyFooter() {
         
         <Grid item xs={6}>
           <div style={{textAlign:"center"}}>
-            <h2 style={{margin:'0px'}} >About Us..</h2>
-            hsajjjd<br/>
-            hjdsjsdjndsk
-          </div>
+            <h2 style={{margin:'0px'}} >About</h2>
+            Sole Purpose of this Web App is to generate polls
+            <br/>by multiple logged in users and to act upon them..<br/>
+            Use this App for creating polls, do surveys, share it with friends and much more..
+            </div>
         </Grid>
         
         <Grid item xs={3}>
