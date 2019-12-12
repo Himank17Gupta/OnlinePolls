@@ -60,10 +60,11 @@ export default function StickyFooter() {
         
         <Grid item xs={6}>
           <div style={{textAlign:"center"}}>
-            <h2 style={{margin:'0px'}} >About</h2>
+            {/* <h2 style={{margin:'0px'}} >About</h2> */}
             Use this App for generating polls by multiple logged in users,
              do surveys, share it with friends and much more..
              <br/>
+             <Copyright/>
             </div>
         </Grid>
         
@@ -74,12 +75,12 @@ export default function StickyFooter() {
           
             <h2 style={{margin:'0px'}}>Contact Developer</h2>
             <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link href="www.fb.com"> <img src={linked} /></Link>
+            
+            <Link href="https://www.linkedin.com/in/himank-gupta-b37873192/"> <img src={linked} /></Link>
             &nbsp;&nbsp; 
-            <Link href="www.fb.com"> <img src={github} /></Link>
+            <Link href="https://github.com/Himank17Gupta"> <img src={github} /></Link>
             &nbsp;&nbsp;
-            <Link href="www.fb.com"> <img src={twitter} /></Link>
+            <Link href="https://twitter.com/HimanK17Gupta"> <img src={twitter} /></Link>
             &nbsp;&nbsp;
           
         </Grid>
