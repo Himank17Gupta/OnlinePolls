@@ -5,16 +5,16 @@
 
 ## SignUp and SignIn
 
-gif1
+![](registerLogin.gif)
 
 ## Check Polls you want to interact with, click on the card to see Pie chart reresentation of recieved trends along with author details
 
-gif2
+![](checkpolls.gif)
 
 ## Create A New Poll
 
-gif3
+![](addPoll.gif)
 
 ## Vote for a poll, horizontal chart percentage representation
 
-gif4
+![](vote.gif)
